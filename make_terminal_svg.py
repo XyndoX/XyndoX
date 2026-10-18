@@ -56,15 +56,15 @@ def build() -> str:
     H = round(y + 34)
 
     body = "\n".join(
-        f'  <text x="{X}" y="{ly}" class="l" style="animation-delay:{d:.2f}s">{c}</text>' for ly, c, d in lines
+        f'  <text x="{X}" y="{ly}" class="l">{c}</text>' for ly, c, _ in lines
     )
+    # ponytail: no per-line fade-in; frozen renderers (previews, GitHub app) caught it mid-animation and showed blank lines
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Terminal: XYNDOX, Christian Reinhardt, agentic coding and cloud infrastructure">
   <style>
-    .l {{ font: 15px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: {INK}; white-space: pre; animation: in .35s ease-out backwards; }}
-    @keyframes in {{ from {{ opacity: 0; }} }}
-    .c {{ animation: blink 1s step-end infinite; animation-delay: 3s; opacity: 0; }}
-    @keyframes blink {{ 0%,100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
-    @media (prefers-reduced-motion: reduce) {{ .l, .c {{ animation: none; opacity: 1; }} }}
+    .l {{ font: 15px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: {INK}; white-space: pre; }}
+    .c {{ animation: blink 1s step-end infinite; }}
+    @keyframes blink {{ 50% {{ opacity: 0; }} }}
+    @media (prefers-reduced-motion: reduce) {{ .c {{ animation: none; }} }}
   </style>
   <rect width="{W}" height="{H}" rx="12" fill="{BG}"/>
   <rect width="{W}" height="36" rx="12" fill="{PANEL}"/><rect y="24" width="{W}" height="12" fill="{PANEL}"/>
