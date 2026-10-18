@@ -53,15 +53,15 @@ def build() -> str:
     lines.append((y, f'<tspan fill="{MUTED}">agentic coding · cloud infrastructure · M.Sc. CS (Applied AI) @ TH Rosenheim</tspan>', 2.2)); y += LH + 14
     lines.append((y, f'<tspan fill="{ORANGE}">chris@github</tspan><tspan fill="{MUTED}"> ~ $ </tspan><tspan fill="{VIOLET}">building --with agents</tspan>', 2.7))
     cursor_y = y
-    H = y + 34
+    H = round(y + 34)
 
     body = "\n".join(
         f'  <text x="{X}" y="{ly}" class="l" style="animation-delay:{d:.2f}s">{c}</text>' for ly, c, d in lines
     )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Terminal: XYNDOX, Christian Reinhardt, agentic coding and cloud infrastructure">
   <style>
-    .l {{ font: 15px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: {INK}; white-space: pre; opacity: 0; animation: in .35s ease-out forwards; }}
-    @keyframes in {{ to {{ opacity: 1; }} }}
+    .l {{ font: 15px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: {INK}; white-space: pre; animation: in .35s ease-out backwards; }}
+    @keyframes in {{ from {{ opacity: 0; }} }}
     .c {{ animation: blink 1s step-end infinite; animation-delay: 3s; opacity: 0; }}
     @keyframes blink {{ 0%,100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
     @media (prefers-reduced-motion: reduce) {{ .l, .c {{ animation: none; opacity: 1; }} }}
